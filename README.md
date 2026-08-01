@@ -33,6 +33,12 @@ ZhuaTech LIS 是知华科技推出的实验室检验协同系统社区源码版�
 
 后端还提供运营风险评估接口，结合积压、延期、关键事项、容量利用率与数据完整度给出分级结果和行动建议。该结果仅用于软件学习演示，不构成医疗决策或诊疗建议。
 
+## 新增：检验危急值升级闭环
+
+危急值规则综合结果严重度、临床确认、核验后时长、复测状态、患者位置和医生可达性，输出风险分、三级升级级别以及 `ROUTINE_FOLLOWUP / URGENT_NOTIFY / CRITICAL_ESCALATION` 状态，形成可追踪的通知动作建议。
+
+接口：`POST /api/admin/critical-result`。本功能仅作软件演示，不替代医疗机构危急值制度、检验判断或临床处置。
+
 ## 技术结构
 
 ```text
@@ -101,4 +107,3 @@ curl -u admin:admin123 -H 'Content-Type: application/json' \
 本仓库不包含真实患者检验数据、真实医疗接口凭据或生产配置。请勿提交患者检验与健康信息、访问令牌、私钥或真实业务数据。安全问题请按 [SECURITY.md](SECURITY.md) 私下报告；参与开发前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 关键词：知华科技 LIS、实验室信息系统、检验质量管理、LIS 协同平台、Java 检验系统、Spring Boot LIS、Vue 医疗管理系统、上海软件定制开发。
-

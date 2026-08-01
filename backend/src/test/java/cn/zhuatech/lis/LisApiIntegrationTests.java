@@ -37,4 +37,14 @@ class LisApiIntegrationTests {
     @Test void anonymousRequestIsRejected() throws Exception {
         mvc.perform(get("/api/workspace/tasks")).andExpect(status().isUnauthorized());
     }
+
+    @Test void adminCanEvaluateCriticalResultEscalation() throws Exception {
+        mvc.perform(post("/api/admin/critical-result").with(httpBasic("admin", "admin123"))
+            .contentType(MediaType.APPLICATION_JSON)
+            .content("{\"resultSeverity\":5,\"acknowledged\":false,\"minutesSinceVerified\":120,\"repeatConfirmed\":true,\"patientLocation\":\"ER\",\"clinicianReached\":false}"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.data.score").value(100))
+            .andExpect(jsonPath("$.data.escalationLevel").value(3))
+            .andExpect(jsonPath("$.data.status").value("CRITICAL_ESCALATION"));
+    }
 }
