@@ -107,3 +107,7 @@ curl -u admin:admin123 -H 'Content-Type: application/json' \
 本仓库不包含真实患者检验数据、真实医疗接口凭据或生产配置。请勿提交患者检验与健康信息、访问令牌、私钥或真实业务数据。安全问题请按 [SECURITY.md](SECURITY.md) 私下报告；参与开发前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 关键词：知华科技 LIS、实验室信息系统、检验质量管理、LIS 协同平台、Java 检验系统、Spring Boot LIS、Vue 医疗管理系统、上海软件定制开发。
+
+## 检验周转时限预测
+
+新增 `POST /api/lis/insights/turnaround-risk`，结合已用时间、检测队列、分析仪、试剂和危急标本预测完成时间，输出 `ON_TIME`、`EXPEDITE` 或 `CRITICAL`。
