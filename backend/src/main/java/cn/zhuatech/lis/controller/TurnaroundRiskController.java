@@ -1,3 +1,3 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.lis.controller;import cn.zhuatech.lis.common.ApiResponse;import cn.zhuatech.lis.service.TurnaroundRiskService;import jakarta.validation.Valid;import org.springframework.web.bind.annotation.*;
 @RestController @RequestMapping("/api/lis/insights/turnaround-risk") public class TurnaroundRiskController{private final TurnaroundRiskService service;public TurnaroundRiskController(TurnaroundRiskService service){this.service=service;}@PostMapping ApiResponse<TurnaroundRiskService.Result> forecast(@Valid @RequestBody TurnaroundRiskService.Request r){return ApiResponse.ok(service.forecast(r));}}
