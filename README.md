@@ -111,3 +111,7 @@ curl -u admin:admin123 -H 'Content-Type: application/json' \
 ## 检验周转时限预测
 
 新增 `POST /api/lis/insights/turnaround-risk`，结合已用时间、检测队列、分析仪、试剂和危急标本预测完成时间，输出 `ON_TIME`、`EXPEDITE` 或 `CRITICAL`。
+
+## 企业级检验结果发布
+
+新增 `POST /api/enterprise/lis/lab-result-release`，覆盖标本身份与流转、仪器质控、校准、危急值、专科复核和更正审计，返回 `RELEASE / REVIEW / BLOCKED`。详见 [结果发布说明](docs/ENTERPRISE_RESULT_RELEASE.md)。
