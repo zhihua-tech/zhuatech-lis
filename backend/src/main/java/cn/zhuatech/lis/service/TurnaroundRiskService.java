@@ -1,4 +1,16 @@
 /* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.lis.service;import jakarta.validation.constraints.*;import org.springframework.stereotype.Service;import java.util.*;
-@Service public class TurnaroundRiskService{public Result forecast(Request r){int capacity=Math.max(1,r.availableAnalyzers());int remaining=(int)Math.ceil(r.queueAhead()*r.averageMinutesPerTest()/(double)capacity);int projected=r.elapsedMinutes()+remaining;List<String> actions=new ArrayList<>();if(!r.reagentAvailable())actions.add("补充试剂或转送备用实验室");if(r.queueAhead()>20)actions.add("调整分析仪队列并优先处理高风险标本");if(r.criticalTest())actions.add("启动危急检验绿色通道");String status=!r.reagentAvailable()||r.criticalTest()&&projected>r.targetMinutes()?"CRITICAL":projected>r.targetMinutes()?"EXPEDITE":"ON_TIME";if(actions.isEmpty())actions.add("预计在目标时限内完成检测");return new Result(remaining,projected,status,actions);}
- public record Request(@NotBlank String specimenId,@Min(0) int elapsedMinutes,@Min(1) int targetMinutes,@Min(0) int queueAhead,@Min(1) int averageMinutesPerTest,@Min(0) int availableAnalyzers,@NotNull Boolean reagentAvailable,@NotNull Boolean criticalTest){}public record Result(int estimatedRemainingMinutes,int projectedTurnaroundMinutes,String status,List<String> actions){} }
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
+@Service public class TurnaroundRiskService{/**
+                                             * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+                                             */
+public Result forecast(Request r){int capacity=Math.max(1,r.availableAnalyzers());int remaining=(int)Math.ceil(r.queueAhead()*r.averageMinutesPerTest()/(double)capacity);int projected=r.elapsedMinutes()+remaining;List<String> actions=new ArrayList<>();if(!r.reagentAvailable())actions.add("补充试剂或转送备用实验室");if(r.queueAhead()>20)actions.add("调整分析仪队列并优先处理高风险标本");if(r.criticalTest())actions.add("启动危急检验绿色通道");String status=!r.reagentAvailable()||r.criticalTest()&&projected>r.targetMinutes()?"CRITICAL":projected>r.targetMinutes()?"EXPEDITE":"ON_TIME";if(actions.isEmpty())actions.add("预计在目标时限内完成检测");return new Result(remaining,projected,status,actions);}
+ /**
+  * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+  */
+ public record Request(@NotBlank String specimenId,@Min(0) int elapsedMinutes,@Min(1) int targetMinutes,@Min(0) int queueAhead,@Min(1) int averageMinutesPerTest,@Min(0) int availableAnalyzers,@NotNull Boolean reagentAvailable,@NotNull Boolean criticalTest){}/**
+                                                                                                                                                                                                                                                                   * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+                                                                                                                                                                                                                                                                   */
+public record Result(int estimatedRemainingMinutes,int projectedTurnaroundMinutes,String status,List<String> actions){} }

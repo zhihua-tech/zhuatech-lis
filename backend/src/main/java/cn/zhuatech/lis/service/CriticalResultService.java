@@ -9,8 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class CriticalResultService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public EscalationResult evaluate(EscalationRequest request) {
         int score = request.resultSeverity() * 15
             + (request.acknowledged() ? 0 : 20)
@@ -30,10 +36,16 @@ public class CriticalResultService {
         return new EscalationResult(score, escalationLevel, status, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record EscalationRequest(@NotNull @Min(1) @Max(5) Integer resultSeverity,
         @NotNull Boolean acknowledged, @NotNull @Min(0) @Max(10000) Integer minutesSinceVerified,
         @NotNull Boolean repeatConfirmed,
         @NotNull @Pattern(regexp = "ER|INPATIENT|OUTPATIENT") String patientLocation,
         @NotNull Boolean clinicianReached) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record EscalationResult(int score, int escalationLevel, String status, List<String> actions) {}
 }
