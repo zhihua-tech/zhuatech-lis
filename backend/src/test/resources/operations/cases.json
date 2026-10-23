@@ -1,0 +1,57 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "REVIEW",
+      "pendingReports": "#20",
+      "requiredReviewerMinutes": "#60",
+      "shortfallMinutes": "#0"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "reviewedReports": "79"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "shortfallMinutes": "#3"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "reviewedReports": "100"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "reviewedReports": "101"
+    },
+    "expected": {},
+    "error": true
+  },
+  {
+    "patch": {
+      "reviewers": "0"
+    },
+    "expected": {
+      "decision": "HOLD"
+    },
+    "error": false
+  },
+  {
+    "patch": {
+      "minutesLeft": "0",
+      "reviewedReports": "100"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false
+  }
+]
